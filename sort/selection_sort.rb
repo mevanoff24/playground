@@ -2,12 +2,11 @@
 
 def selection_sort(array)
 	array.length.times do |number|
-		min = number # 0
-		p min
+		min_index = number # 0
 		number.upto(array.length - 1) do |index|
-			min = index if array[index] < array[min]
+			min_index = index if array[index] < array[min_index]
 		end
-		array[number], array[min] = array[min], array[number]
+		array[number], array[min_index] = array[min_index], array[number]
 	end
 	array
 end
