@@ -6,9 +6,9 @@ Traveling Salesman
 A*
 bloom filter
 breadth-first iterative search
-binary search
+binary search -- DONE
 k-way merge
-bubble/selection/insertion sort
+bubble/selection/insertion sort -- DONE
 in-place quick sort
 bucket/radix sort
 closest pair
