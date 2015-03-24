@@ -4,33 +4,33 @@ class Tree
 
 	attr_accessor :left, :right, :data
 
-	def initialize(x = nil)
+	def initialize(data_set = nil)
 		@left = nil
 		@right = nil
-		@data = x
+		@data = data_set
 	end
 
-	def insert(x)
+	def insert(data_set)
 		list = []
 		if @data == nil
-			@data = x
+			@data = data_set
 		elsif @left == nil
-			@left = Tree.new(x)
+			@left = Tree.new(data_set)
 		elsif @right == nil
-			@right = Tree.new(x)
+			@right = Tree.new(data_set)
 		else
 			list << @left
 			list << @right
 			loop do
 				node = list.shift
 				if node.left == nil
-					node.insert(x)
+					node.insert(data_set)
 					break
 				else
 					list << node.left
 				end
 				if node.right == nil
-					node.insert(x)
+					node.insert(data_set)
 					break
 				else
 					list << node.right
@@ -60,6 +60,6 @@ items = [1, 2, 3, 4, 5, 6, 7]
 
 tree = Tree.new
 
-items.each {|x| tree.insert(x)}
+items.each {|data_set| tree.insert(data_set)}
 
-tree.traverse {|x| print "#{x} "}
+tree.traverse {|data_set| print "#{data_set} "}

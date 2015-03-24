@@ -9,8 +9,8 @@ breadth-first iterative search
 binary search -- DONE
 k-way merge
 bubble/selection/insertion sort -- DONE
-in-place quick sort
-bucket/radix sort
+in-place quick sort - DONE
+bucket/radix sort - DONE
 closest pair
 vector (dynamic array)
 linked list
@@ -20,7 +20,7 @@ circular queue
 hash map
 set
 priority queue
-binary search tree
+binary search tree - DONE
 
 
 Big-O
@@ -32,3 +32,16 @@ Trees - tree traversal algorithms: BFS and DFS, and know the difference between 
 Graphs - objects and pointers, matrix, and adjacency list
 Graphs - breadth-first search and depth-first search. computational complexity, their tradeoffs, and how to implement them in real code.
 Other Data Types - traveling salesman and the knapsack problem
+
+
+Given a matrix consisting of 0's and 1's, find the maximum size sub-matrix consisting of only 1's.
+Given an array containing both positive and negative integers, find the contiguous array with the maximum sum.
+Longest Increasing Subsequence - Find the length of the longest subsequence of a given sequence such that all the elements are sorted in increasing/non-decreasing order.
+There are many problems which reduce to the this problem such as box stacking and the building bridges. These days the interviewers expect an NLogN solution.
+Edit Distance - Given two strings and a set of operations Change (C), insert (I) and delete (D) , find minimum number of edits (operations) required to transform one string into another.
+0/1 Knapsack Problem - A thief robbing a store and can carry a maximal weight of W into their knapsack. There are n items and ith item weigh wi and is worth vi dollars. What items should thief take?
+Balanced Partition - You have a set of n integers each in the range 0 … K. Partition these integers into two subsets such that you minimize |S1 – S2|, where S1 and S2 denote the sums of the elements in each of the two subsets.
+Coin Change - Given a value N, if we want to make change for N cents, and we have infinite supply of each of S = { S1, S2, .. , Sm} valued coins, how many ways can we make the change?
+Longest Common Subsequence - Find the longest common subsequence of two strings A and B where the elements are letters from the two strings and they should be in the same order.
+Longest Palindromic Subsequence - The question is same as above but the subsequence should be palindromic as well.
+Minimum Number of Jumps - Given an array of integers where each element represents the maximum number of steps that can be made forward from that element, find the minimum number of jumps to reach the end of the array (starting from the first element).
