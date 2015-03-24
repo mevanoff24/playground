@@ -1,35 +1,25 @@
 
-# # PS
-# middle index = array /2
-# set left right arrays
-# call other method
-
-# if one side empty do other side
-# else left.first + recursive right
-# else swith 
-
-def merge_sort(array)
-	if array.length <= 1
-		array
-	else
-		middle_index = (array.length / 2).floor
-		left = merge_sort(array[0..middle_index-1])
-		right = merge_sort(array[middle_index..array.length])
-		merge(left, right)
+def quicksort(array, left=0, right=array.length-1)
+	if left < right
+		pivot = partition(array, left, right)
+		quicksort(array, left, pivot-1)
+		quicksort(array, pivot+1, right)
 	end
-end	
+	array
+end
 
-def merge(left, right)
-	if left.empty?
-		right
-	elsif right.empty?
-		left
-	elsif left.first < right.first
-		[left.first] + merge(left[1..left.first], right)
-	else
-		[right.first] + merge(left, right[1..right.first])
+def partition(array, left, right)
+	pivot = array[right]
+	index = left-1
+	for number in left..right-1
+		if array[number] <= pivot
+			index+=1
+			array[index], array[number] = array[number], array[index]
+		end
 	end
+	array[index+1], array[right] = array[right], array[index+1]
+	index +1
 end
 
 
-p merge_sort([4,5,2,1,6,8])
+p quicksort([5,2,9,0,1,4,6,8])
