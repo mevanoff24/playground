@@ -1,0 +1,34 @@
+what to learn 
+
+Dijkstra’s
+Floyd-Warshall
+Traveling Salesman
+A*
+bloom filter
+breadth-first iterative search
+binary search
+k-way merge
+bubble/selection/insertion sort
+in-place quick sort
+bucket/radix sort
+closest pair
+vector (dynamic array)
+linked list
+stack
+queue
+circular queue
+hash map
+set
+priority queue
+binary search tree
+
+
+Big-O
+Sorting - quick and merge
+Hashtable - with arrays
+Trees - basic tree construction, traversal and manipulation algorithms. You should be familiar with binary trees, n-ary trees, and trie-trees
+Trees - red/black tree, a splay tree or an AVL tree
+Trees - tree traversal algorithms: BFS and DFS, and know the difference between inorder, postorder and preorder
+Graphs - objects and pointers, matrix, and adjacency list
+Graphs - breadth-first search and depth-first search. computational complexity, their tradeoffs, and how to implement them in real code.
+Other Data Types - traveling salesman and the knapsack problem

@@ -1,4 +1,4 @@
-
+# In Place
 
 def quick_sort(array, min = 0, max = array.length - 1)
 	if min < max
@@ -27,3 +27,37 @@ def partition(array, left, right)
 end
 
 p quick_sort([4,6,2,8,1])
+
+
+# Out of Place
+
+def quicksort(array)  
+  return array if array.size <= 1  
+  pivot = array.sample  
+  left, right = array.partition { |e| e < pivot }  
+  quicksort(left) + quicksort(right)  
+end  
+
+
+
+p quicksort([4,6,2,8,1])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
