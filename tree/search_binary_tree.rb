@@ -14,10 +14,10 @@ class Tree
     if self.data == x
      return self
     else
-     ltree = left != nil ? left.search(x) : nil
-     return ltree if ltree != nil
-     rtree = right != nil ? right.search(x) : nil
-     return rtree if rtree != nil
+     left_tree = left != nil ? left.search(x) : nil
+     return left_tree if left_tree != nil
+     right_tree = right != nil ? right.search(x) : nil
+     return right_tree if right_tree != nil
     end
     nil
    end
