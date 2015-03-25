@@ -7,7 +7,7 @@ A*
 bloom filter
 breadth-first iterative search
 binary search -- DONE
-k-way merge
+k-way merge -- DONE
 bubble/selection/insertion sort -- DONE
 in-place quick sort - DONE
 bucket/radix sort - DONE
