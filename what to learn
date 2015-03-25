@@ -36,7 +36,7 @@ Other Data Types - traveling salesman and the knapsack problem
 
 Given a matrix consisting of 0's and 1's, find the maximum size sub-matrix consisting of only 1's.
 Given an array containing both positive and negative integers, find the contiguous array with the maximum sum.
-Longest Increasing Subsequence - Find the length of the longest subsequence of a given sequence such that all the elements are sorted in increasing/non-decreasing order.
+--DONE--Longest Increasing Subsequence - Find the length of the longest subsequence of a given sequence such that all the elements are sorted in increasing/non-decreasing order.
 There are many problems which reduce to the this problem such as box stacking and the building bridges. These days the interviewers expect an NLogN solution.
 Edit Distance - Given two strings and a set of operations Change (C), insert (I) and delete (D) , find minimum number of edits (operations) required to transform one string into another.
 0/1 Knapsack Problem - A thief robbing a store and can carry a maximal weight of W into their knapsack. There are n items and ith item weigh wi and is worth vi dollars. What items should thief take?
