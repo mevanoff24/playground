@@ -6,8 +6,8 @@ def longest_incr_sub(seq)
 		l_conn_keys = length_hash.keys.select do |index|
 			index < number && seq[index] < seq[number]
 		end
-		l_conn_values = l_conn_keys.map do |k|
-      length_hash[k]
+		l_conn_values = l_conn_keys.map do |key|
+      length_hash[key]
     end
     length_hash[number] = 1 + (l_conn_values.max || 0)
 	end
