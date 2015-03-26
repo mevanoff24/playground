@@ -12,7 +12,7 @@ def do_count(number_of_cents, high)
 	elsif @cache[number_of_cents][high]
 		@cache[number_of_cents][high]
 	else
-		@cache[number_of_cents][high] = do_count(number_of_cents-@coins[high], high) + do_count(number_of_cents, high-1)	
+		@cache[number_of_cents][high] = do_count(number_of_cents - @coins[high], high) + do_count(number_of_cents, high-1)	
 	end
 end
 
