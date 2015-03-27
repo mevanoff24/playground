@@ -48,13 +48,18 @@ describe Maze do
 			maze.mark(:d, distances)
 			expect(distances).to eq [nil, 1, 1, 0]
 		end
+		specify do 
+			distances = [nil, nil, 1, 5]
+			maze.mark(:d, distances)
+			expect(distances).to eq [nil, 6, 1, 5]
+		end
 	end
 
 	describe "#solve" do 
-		xit "labels the distance to a goal" do
+		it "labels the distance to a goal" do
 			expect(maze.solve(:d)).to eq [2,1,1,0]
 		end
-		xit "labels the distance to a goal" do
+		it "labels the distance to a goal" do
 			expect(maze.solve(:a)).to eq [0,1,2,2]
 		end
 	end

@@ -17,18 +17,23 @@ class Maze
 		nodes.min_by{ |node| distances[nodes.index(node)] || 10000}
 	end
 
-	def mark(node, distance)
-		
+	def mark(node, distances)
+		connections[node].each do |neighbor|
+			next if distances[nodes.index(neighbor)]
+			distances[nodes.index(neighbor)] = distances[nodes.index(node)] + 1
+		end
+
 	end
 
 	def solve(goal)
 		unchecked_nodes = nodes
-		distance = initial_distances(goal)
+		distances = initial_distances(goal)
 		until unchecked_nodes.empty?
-			closest_node = closest(unchecked_nodes, distance)
-		mark(closest_node, distance)
+			closest_node = closest(unchecked_nodes, distances)
+		mark(closest_node, distances)
 		unchecked_nodes -= [closest_node]
 		end
+		distances
 	end
 
 end
