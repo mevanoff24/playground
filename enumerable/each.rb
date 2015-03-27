@@ -1,12 +1,14 @@
 
-
-def my_each
-	i = 0
-	while self[i]
-		yield self[i]
-		i += 1
+class Array
+	def my_each
+		i = 0
+		while self[i]
+			yield self[i]
+			i += 1
+		end
+		self
 	end
-	self
 end
 
-my_each()
+
+p [1,2,3].my_each{|n| n * n }
