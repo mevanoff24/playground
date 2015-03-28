@@ -13,4 +13,4 @@ def fizzbuzz(array)
 	end		
 end
 
-fizzbuzz([1,2,3,4,5,6,7,8,15])
+fizzbuzz((1..100).to_a)
