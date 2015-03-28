@@ -1,4 +1,4 @@
-# In Place
+# In Place QuickSOrt
 
 class QuickSort
  

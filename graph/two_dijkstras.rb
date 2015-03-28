@@ -37,3 +37,4 @@ class Maze
 	end
 
 end
+
