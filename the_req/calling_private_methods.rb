@@ -1,3 +1,8 @@
+# Calling Private Methods in RubyTry Me!
+# The following code will fail with NoMethodError : private method 'dream' called for Dog
+
+# Assuming that you cannot modify the source code for the Dog class and that the method
+# must remain private - how can you nonetheless call this method from outside of Dog class?
 
 class Dog
     def speak
