@@ -6,10 +6,11 @@
 
 def next_palindrome(integer)
 	integer = integer.to_s
+	mid_index = (integer.length / 2)
 	if integer.reverse == integer
-		integer = 121 
+		integer[mid_index] + 1
 	end
 	integer
 end
 
-p next_palindrome(111)
+p next_palindrome(565)
