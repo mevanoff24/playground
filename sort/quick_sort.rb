@@ -5,21 +5,22 @@
 # input = list of unsorted numbers
 # output = returns list of sorted numbers
 
-# set params 
+# main method
+# - set params 
 #  - takes an array of numbers
-#  - left is the index of the lowest element in subarray
-#  - right is the index of the highest element in subarray
+#  - left is the index of the leftmost element in subarray
+#  - right is the index of the rightmost element in subarray
 # choose pivot_index and call new method partition(array, left, right)
 
 # partition method
-#  - choose pivot number, doesn't matter where
-#  - set index of where to put numbers less than pivot number, set beginning of array
+#  - choose pivot number, doesn't matter where (I chose last)
+#  - set an index of where to put numbers less than pivot, beginning of array
 #  - loop through left..right
-#     - if number is less than or equal to pivot 
+#     - if number <= to pivot 
 #     - swap number and index
-#  - always swap and put pivot is final place
+#  - then always swap and put pivot is final place
 
-# recursively call main method with left and right of pivot index until sorted
+# recursively call main method with array, left and right of pivot index until sorted
 # return sorted array if left index and right index meet
 
 class QuickSort
@@ -52,7 +53,7 @@ p QuickSort.quick([4,6,2,8,1,3,3,5,6,7,10,1,3,2,9,5])
 
 
 
-Out of Place
+# Out of Place
 
 def quicksort(array)  
   return array if array.size <= 1  
@@ -60,7 +61,6 @@ def quicksort(array)
   left, right = array.partition { |number| number < pivot }  
   quicksort(left) + quicksort(right)  
 end  
-
 
 
 p quicksort([4,6,2,8,1])
