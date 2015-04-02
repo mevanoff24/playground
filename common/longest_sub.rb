@@ -15,4 +15,3 @@ def longest_incr_sub(seq)
 end
 
 p longest_incr_sub([1,3,5,1,3]) == 3
-# p longest_incr_sub([3,5,1,4,6,7,8,9,2]) == 6
