@@ -1,6 +1,6 @@
 what to learn 
 
-Dijkstra’s
+Dijkstra’s -- DONE
 Floyd-Warshall
 Traveling Salesman
 A*
@@ -24,7 +24,7 @@ binary search tree - DONE
 
 
 Big-O
-Sorting - quick and merge
+Sorting - quick and merge -- DONE
 Hashtable - with arrays
 Trees - basic tree construction, traversal and manipulation algorithms. You should be familiar with binary trees, n-ary trees, and trie-trees
 Trees - red/black tree, a splay tree or an AVL tree
