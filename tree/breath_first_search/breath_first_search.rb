@@ -23,7 +23,7 @@ class BreathFirstSearch
 	end
 
 	def shortest_path(node)
-		return unless @visted.include?(node)
+		return unless has_path_to(node)
 		path = []
 
 		while (node != @node) do 
@@ -34,24 +34,32 @@ class BreathFirstSearch
 	end
 
 	def bfs(node)
-		# put source node into queue and mark as visited
 		queue = []
 		queue << node
 		@visited << node
 
-		# remove recently visited node
-		# add each unvisited adjacents to queue and mark as visited
-		while queue.any?
-			current_node = queue.shift
+		while queue.any? 
+			current_node = node
 			current_node.adjacents.each do |adjacent_node|
 				next if @visited.include?(adjacent_node)
 				queue << adjacent_node
 				@visited << adjacent_node
-				@edge_to[adjacent_node] = current_node
+				edge_to[adjacent_node] = current_node
 			end
 		end
+		# put source node into queue and mark as visited
+		
+
+		# remove recently visited node
+		# add each unvisited adjacents to queue and mark as visited
+		
+	end
+
+	def has_path_to(node)
+		@visited.include?(node)
 	end
 	
 end
+
 
  

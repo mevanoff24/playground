@@ -23,6 +23,6 @@ describe BreathFirstSearch do
 
     path = BreathFirstSearch.new(graph, @node1).shortest_path(@node5)
 
-    path.must_equal [@node1, @node5]
+    expect(path).to eq [@node1, @node5]
   end
 end

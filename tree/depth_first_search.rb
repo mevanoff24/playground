@@ -11,7 +11,7 @@ class DepthFirstSearch
 	end
 
 	def	path_to_node(node)
-		return unless @visited.include?(node)
+		return unless has_path_to(node)
 		path = []
 		current_node = node
 
@@ -32,5 +32,9 @@ class DepthFirstSearch
 			@edge_to[adj_node] = node
 		end
 	end
+
+	def has_path_to?(node)
+    @visited.include?(node)
+  end
 
 end
