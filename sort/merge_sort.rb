@@ -1,5 +1,20 @@
 # Recursive
 
+# Pseudo Code
+# n = length
+# a = left array n/2
+# b = right array n/2
+# i = 1, j = 1
+
+# for k = 1 
+# 	if A(i) < B(j)
+# 		output(k) = A(i)
+# 		i+1
+# 	else
+# 		A(i) > B(j)
+# 		output(k) = B(j)
+# 		j+1
+
 def merge_sort(array)
 	if array.length <= 1
 		array
@@ -23,7 +38,7 @@ def merge(left, right)
 	end
 end
 
-p merge_sort([5,3,2,5,8,9])
+p merge_sort([5,3,2,5,8,9,2])
 
 # Big O
 
