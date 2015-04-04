@@ -3,7 +3,7 @@
 # Pseudo Code
 
 # count(array, array.length)
-# if n == 1 return 0
+# if n == 1 return 0 and array
 # else
 # 	B, x = sort_and_count (first half of array, n/2)
 # 	C, y = sort_and_count (second half of array, n/2)
@@ -14,35 +14,36 @@
 def sort_and_count(array)
 	if array.length <= 1
 		return [0 ,array]
-	end
+	else
 		middle_index = array.length/2
 		left = sort_and_count(array[0..middle_index-1])
 		right = sort_and_count(array[middle_index..array.length])
+		p left[1]
+		p right[1]
 		merge_results = merge_and_count(left[1], right[1])
-
-		return [left[0] + right[0] + merge_results[0], merge_results[1]]
+	end
 end
 
 def merge_and_count(left, right)
 	inversions = 0
 	output = []
-	i,j = 0,0
+	left_index,right_index = 0,0
 
-	while i < left.length && j < right.length
-		if left[i] < right[j]
-			output << left[i]
-			i +=1
+	while left_index < left.length && right_index < right.length
+		if left[left_index] < right[right_index]
+			output << left[left_index]
+			left_index +=1
 		else
-			output << right[j]
-			j +=1
-			inversions += left.length - i
+			output << right[right_index]
+			right_index +=1
+			inversions += left.length - left_index
 		end
 	end
 
-	if i < left.length
-		output += left[i..(left.length - 1)]
+	if left_index < left.length
+		output += left[left_index..(left.length)]
 	else
-		output += right[j..(right.length - 1)]
+		output += right[right_index..(right.length)]
 	end
 	return [inversions, output]
 end
