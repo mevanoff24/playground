@@ -5,8 +5,8 @@ def mergesort(array)
 		array
 	else
 		middle_index = (array.length/2)
-		left = array[0..middle_index-1]
-		right = array[middle_index..array.length]
+		left = mergesort(array[0..middle_index-1])
+		right = mergesort(array[middle_index..array.length])
 		merge(left, right)
 	end
 end

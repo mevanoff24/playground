@@ -19,8 +19,8 @@ def merge_sort(array)
 	if array.length <= 1
 		array
 	else
-		middle_index = (array.length / 2).floor
-		left = merge_sort(array[0..middle_index - 1])
+		middle_index = (array.length/2)
+		left = merge_sort(array[0..middle_index-1])
 		right = merge_sort(array[middle_index..array.length])
 		merge(left, right)
 	end
@@ -38,7 +38,10 @@ def merge(left, right)
 	end
 end
 
-p merge_sort([5,3,2,5,8,9,2])
+p merge_sort([5,2,9,1,4,6,8,1])
+p merge_sort([3,1,4,8,2,4,6,8,9,4,2,6,8,3,2,7,9,3])
+
+
 
 # Big O
 
