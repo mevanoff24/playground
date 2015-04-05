@@ -12,7 +12,8 @@ def distance(p1, p2)
 end
  
 def closest_bruteforce(points)
-  min_distance, min_points = Float::MAX, []
+  min_distance = Float::MAX
+  min_points =  []
   points.combination(2) do |pi,pj|
     dist = distance(pi, pj)
     if dist < min_distance
