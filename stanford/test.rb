@@ -1,37 +1,24 @@
 
 
-def count_and_merge(array)
-	if array.length <= 1
-		return [0, array]
-	end
-	middle_index = array.length/2
-	left = count_and_merge(array[0..middle_index-1])
-	right = count_and_merge(array[middle_index..array.length])
-	merge_results = merge(left[1], right[1])
-end
+Point = Struct.new(:x, :y)
 
-def merge(left, right)
-	inversions = 0
-	result = []
-	left_index,right_index = 0,0
-
-	while left_index < left.length && right_index < right.length
-		if left[left_index] < right[right_index]
-			result << left[left_index]
-			left_index += 1
-		else
-			result << right[right_index]
-			right_index += 1
-			inversions += left.length - left_index
+def closest_pair(points)
+	min_distance = Float::INFINITY
+	min_points = []
+	points.combination(2).each do |pi, pj|
+		dist = distance(pi, pj)
+		if dist < min_distance
+			min_distance = dist
+			min_points = [pi, pj]
 		end
 	end
-
-	if left_index < left.length
-		result += left[left_index..left.length]
-	else
-		result += right[right_index..right.length]
-	end
-	return [inversions, result]
+	[min_distance, min_points]
 end
 
-p count_and_merge([1,3,5,2,4,6])
+def distance(point1, point2)
+	Math.hypot(point1.x - point2.x, point1.y - point2.y)
+end	
+
+points = Array.new(100) {Point.new(rand(1..50), rand(1..50))}
+
+p closest_pair(points)

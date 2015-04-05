@@ -14,12 +14,11 @@
 def sort_and_count(array)
 	if array.length <= 1
 		return [0 ,array]
-	else
+	end
 		middle_index = array.length/2
 		left = sort_and_count(array[0..middle_index-1])
 		right = sort_and_count(array[middle_index..array.length])
 		merge_and_count(left[1], right[1])
-	end
 end
 
 def merge_and_count(left, right)
