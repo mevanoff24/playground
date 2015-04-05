@@ -68,7 +68,18 @@ p quicksort([4,6,2,8,1])
 
 
 
+# High Level Quciksort
 
+# Quciksort(array, n)
+# if n=1 
+#   array
+# p = choose pivot(array, n)
+# partition array around p 
+# recursively sort 1st part
+# recursively sort 2nd part 
+
+swap left most index with j for first
+to set pivit swap pivot with right most index 
 
 
 
