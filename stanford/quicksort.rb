@@ -10,25 +10,25 @@
 # swap A[left] and A[i-1]
 
 
-def quick(array, left=0, right=array.length-1)
-	if left < right
-		pivot_index = partition(array, left, right)
-		quick(array, left, pivot_index-1)
-		quick(array, pivot_index+1, right)
+def quick(array, low=0, high=array.length-1)
+	if low < high
+		pivot_index = partition(array, low, high)
+		quick(array, pivot_index+1, high)
+		quick(array, low, pivot_index-1)
 	end
 	array
 end
 
-def partition(array, left, right)
-	pivot = array[right]
-	index = left -1
-	for number in left..right -1
+def partition(array, low, high)
+	pivot = array[high]
+	index = low -1
+	for number in low..high-1
 		if array[number] <= pivot
 			index +=1
-			array[index], array[number] = array[number], array[index]
-		end
+			array[number], array[index] = array[index], array[number]
+		end			
 	end
-	array[index+1], array[right] = array[right], array[index+1]
+	array[high], array[index+1] = array[index+1], array[high]
 	index +1
 end
 

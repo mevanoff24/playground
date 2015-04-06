@@ -35,15 +35,15 @@ class QuickSort
   end
  
   def self.partition(array, left, right)
-    pivot = array[left]
-    index = left +1
-    for number in left+1..right -1
+    pivot = array[right]
+    index = left -1
+    for number in left..right -1
       if array[number] <= pivot
         index += 1
         array[index], array[number] = array[number], array[index]
       end
     end
-    array[index+1], array[left] = array[left], array[index+1]
+    array[index+1], array[right] = array[right], array[index+1]
     index +1
   end
  
