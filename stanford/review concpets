@@ -1,0 +1,17 @@
+review concpets
+
+sample space - all possible outcomes
+						 - probability of >= 0
+						 - example rolling 2 dice = 1/36 chance, quicksort = choosing pivot
+event - subset of everthing that couold happen
+      - subset of sample space
+      - add up all to get probability
+      - example sum of dice is 7 = 1/6, quicksort = 25/75 split 1/2
+random variable - real valued function
+  						  - gives back a number
+  						  - exampe sum of 2 dice = between 2 and 12
+  						  - expectation - average value of sum 
+Linearity of Expectation - If you want to think of expected value of sum of variables, it doesnt matter if you take sum first then expectation or vice versa, expectation * sum and sum * expectation will be same
+
+Load Balancing Solution - assign random server to random number
+					- sample space = all are equally likely 
