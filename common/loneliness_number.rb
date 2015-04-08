@@ -1,16 +1,18 @@
 
-def find_solo(numbers)
-	number_freq = Hash.new(0)
+def solo_number(numbers)
+	occurances = Hash.new(0)
 	lonely = nil
 	numbers.each do |number|
-		number_freq[number] +=1
+		occurances[number] += 1
 	end
-	number_freq.each_pair do |number, freq|
-		lonely = number if freq == 1
+	occurances.each_pair do |number, freq|
+		if freq == 1
+			lonely = number
+		end
 	end
 	lonely
 end
 
 
-test = [2,6,3,8,6,2,3]
-p find_solo(test)
+
+p solo_number( [2,6,3,8,6,2,3] ) == 8

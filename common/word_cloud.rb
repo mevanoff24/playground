@@ -7,7 +7,7 @@ def word_cloud(pharagraph)
 	pharagraph = pharagraph.downcase.split(" ")
 	occurances = Hash.new(0)
 	pharagraph.each do |word|
-		occurances[word] +=1
+		occurances[word] += 1
 	end
 	occurances
 end
