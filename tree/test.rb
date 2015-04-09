@@ -1,35 +1,41 @@
 
-class Node
-	attr_accessor :value, :left_child, :right_child
-	def initialize(value)
-		@value = value
-		@left_child = nil
-		@right_child = nil
-	end
-end
+class BreathFirstSearch
+	def intiatialize(graph, source_node)
+		@graph = graph
+		@node = source_node
+		@explored = []
+		@edges_to = {}
 
-def make_tree(size)
-	numbers = (0..size).to_a.shuffle
-	root = Node.new(numbers.shift)
-	while numbers.any?
-		add_node(root, Node.new(numbers.shift))
+		bfs(source_node)
 	end
-	return root
-end
 
-def add_node(root, node)
-	if node.value < node.root
-		if node.left_child == nil
-			node.left_child = node
-		else
-			add_node(root.left_child, node)
+	def shortest_path(node)
+		return unless has_path_to(node)
+		path = []
+		while node != @node do 
+			path.unshift(node)
+			node = @edges_to[node]
 		end
-	else
-		if node.right_child == nil
-			node.right_child = node
-		else
-			add_node(root.right_child, node)
+		path.unshift(@node)
+	end
+
+	def bfs(node)
+		queue = []
+		queue << node
+		@explored << node
+		while queue.any?
+			current_node = queue.shift
+			current_node.adjacents.each do |adj_node|
+				next if current_node.include?(adj_node)
+				queue << adj_node
+				@explored << adj_node
+				@edges_to[adj_node] = current_node
+			end
 		end
 	end
-	return root
+
+	def has_path_to(node)
+		@visited.include?(node)
+	end
+
 end

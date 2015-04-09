@@ -1,10 +1,9 @@
 
-def revers_string_in_place(string)
-	(string.length/2).times do |index|
-		string[index], string[-1-index] = string[-1-index], string[index]		
+def reverse_inplace(string)
+	string.length/2.times do |i|
+		string[i], string[-1-i] = string[-1-i], string[i]
 	end
 	string
 end
 
-
-p revers_string_in_place("algorithms")
+p reverse_inplace("algoritms")
