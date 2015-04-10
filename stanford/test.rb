@@ -1,26 +1,35 @@
 
-class Quicksort
-	def self.quick(array, low=0, high=array.length-1)
-		if low < high
-			pivot_index = partition(array, low, high)
-			quick(array, pivot_index+1, high)
-			quick(array, low, pivot_index-1)
-		end
-		array
-	end
 
-	def self.partition(array, low, high)
-		pivot = array[high]
-		index = low -1
-		for number in low..high-1
-			if array[number] <= pivot
-				index += 1
-				array[index], array[number] = array[number], array[index]
-			end
-		end
-		array[index+1], array[high] = array[high], array[index+1]
-		index +1
+def merge_sort(array)
+	if array.length <= 1
+		return array
 	end
+	middle_index = array.length/2
+	left = merge_sort(array[0..middle_index-1])
+	right = merge_sort(array[middle_index..array.length])
+	merge(left, right)
 end
 
-p Quicksort.quick([4,2,4,6,3,2,7,8,6,4,3,2])
+def merge(left, right)
+	output = []
+	left_index, right_index = 0,0
+	while left_index < left.length && right_index < right.length
+		if left[left_index] < right[right_index]
+			output << left[left_index]
+			left_index +=1
+		else
+			output << right[right_index]
+			right_index +=1
+		end
+	end
+
+	if left_index < left.length
+		output += left[left_index..left.length]
+	else
+		output += right[right_index..right.length]
+	end
+	return output
+end
+
+
+p merge_sort([3,5,2,1,7,8,5,2,4,2,1])
