@@ -1,4 +1,4 @@
-require 'rspec'
+0require 'rspec'
 require_relative 'two_dijkstras'
 
 describe Maze do

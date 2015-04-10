@@ -30,8 +30,8 @@ class Maze
 		distances = initial_distances(goal)
 		until unchecked_nodes.empty?
 			closest_node = closest(unchecked_nodes, distances)
-		mark(closest_node, distances)
-		unchecked_nodes -= [closest_node]
+			mark(closest_node, distances)
+			unchecked_nodes -= [closest_node]
 		end
 		distances
 	end
