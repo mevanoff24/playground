@@ -16,7 +16,7 @@ class BredthFirstSearch
 
 	def initialize(graph, sourch_node)
 		@graph = graph
-		@sourch_node = sourch_node
+		@node = sourch_node
 		@visited = []
 		@edge_to = {}
 
