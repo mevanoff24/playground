@@ -1,4 +1,4 @@
-# Put unvisited nodes on a queue
+ # Put unvisited nodes on a queue
 # Solves the shortest path problem: Find path from "source" to "target" that uses the fewest number of edges
 # Not recursive (like depth first search)
 
@@ -15,7 +15,7 @@ class BreathFirstSearch
 
 	def initialize(graph, sourch_node)
 		@graph = graph
-		@sourch_node = sourch_node
+		@node = sourch_node
 		@visited = []
 		@edge_to = {}
 
