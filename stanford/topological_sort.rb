@@ -14,6 +14,6 @@ class TopologicalSort
 		node.adjacents.each do |adj_node|
 			dfs(adj_node) unless @explored.include?(adj_node)
 		end
-		@post_order << adj_node
+		@post_order << node
 	end
 end

@@ -15,7 +15,7 @@ class DepthFirstSearch
 		path = []
 		current_node = node
 
-		while (current_node != sources_node) do
+		while (current_node != @sources_node) do
 			path.unshift(current_node)
 			current_node = @edge_to[current_node]
 		end
@@ -24,7 +24,7 @@ class DepthFirstSearch
 	end
 
 	def dfs(node)
-		@visited = node
+		@visited << node
 		node.adjacents.each do |adj_node|
 			next if @visited.include?(adj_node)
 

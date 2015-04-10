@@ -1,34 +1,31 @@
 
-class BreathFirstSearch
+class DepthFirstSearch
 	def initialize(graph, source_node)
 		@graph = graph
-		@node = source_node
+		@source_node = source_node
 		@explored = []
 		@edges_to = {}
 
-		bfs(source_node)
+		dfs(source_node)
 	end
 
 	def shortest_path(node)
 		return unless @explored.include?(node)
 		path = []
-		while @node != node do
-			path.unshift(node)
-			node = @edges_to[node]
+		current_node = node
+		while current_node != @source_node do
+			path.unshift(current_node)
+			current_node = edges_to[current_node]
 		end
-		path.unshift(@node)
+		path.unshift(@source_node)
 	end
 
-	def bfs(node)
-		queue = []
-		queue << node
+	def dfs(node)
 		@explored << node
-		current_node = queue.shift
-		current_node.adjacents.each do |adj_node|
+		node.adjacents.each do |adj_node|
 			next if @explored.include?(adj_node)
-			queue << adj_node
-			@explored << adj_node
-			@edges_to[adj_node] = current_node
+			dfs(adj_node)
+			@edges_to[adj_node] = node
 		end
 	end
 end

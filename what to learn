@@ -5,17 +5,17 @@ Floyd-Warshall
 Traveling Salesman
 A*
 bloom filter
-breadth-first iterative search
+breadth-first iterative search _ DONE
 binary search -- DONE
 xk-way merge -- DONE
 bubble/selection/insertion sort -- DONE
 in-place quick sort - DONE
 bucket/radix sort - DONE
-closest pair
+closest pair - DONE
 vector (dynamic array)
 linked list
-stack
-queue
+stack - LIFO - DONE
+queue - DONE
 circular queue
 hash map
 set

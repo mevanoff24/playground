@@ -1,22 +1,26 @@
 
-Point = Struct.new(:x, :y)
-
-def distance(p1, p2)
-	Math.hypot(p1.x - p2.x, p2.x - p2.y )
-end
-
-def closest_pair(points)
-	min_distance = Float::INFINITY
-	min_points = []
-	points.combination(2) do |pi, pj|
-		dist = distance(pi, pj)
-		if dist < min_distance
-			min_distance = dist
-			min_points << [pi, pj]
+class Quicksort
+	def self.quick(array, low=0, high=array.length-1)
+		if low < high
+			pivot_index = partition(array, low, high)
+			quick(array, pivot_index+1, high)
+			quick(array, low, pivot_index-1)
 		end
+		array
 	end
-	[min_points, min_points]
+
+	def self.partition(array, low, high)
+		pivot = array[high]
+		index = low -1
+		for number in low..high-1
+			if array[number] <= pivot
+				index += 1
+				array[index], array[number] = array[number], array[index]
+			end
+		end
+		array[index+1], array[high] = array[high], array[index+1]
+		index +1
+	end
 end
 
-points = Array.new(100) {Point.new(rand, rand)}
-p closest_pair(points)
+p Quicksort.quick([4,2,4,6,3,2,7,8,6,4,3,2])
