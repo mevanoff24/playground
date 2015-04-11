@@ -2,21 +2,20 @@ require 'priority_queue'
 
 class Dijkstra
 
-	def initialize()
+	def initialize
 		@vertices = {}
 		@distances = {}
 		@previous = {}
 		@nodes = PriorityQueue.new
 	end
 
-	def add_vertex(name, edges)
-		@vertices[name] = edges
+	def add_vertex(name, values)
+		@vertices[name] = values
 	end
 
 	def shortest_path(start, finish)
 		maxint = Float::INFINITY
-		# INITIALIZE VERTICES
-		@vertices.each do |vertex, value|
+		@vertices.each do |vertex, values|
 			if start == vertex
 				@distances[vertex] = 0
 				@nodes[vertex] = 0
@@ -26,38 +25,37 @@ class Dijkstra
 			end
 			@previous[vertex] = nil
 		end
-		# PLUCK OUT FIRST 
+
 		while @nodes.any?
-			smallest = @nodes.delete_min_return_key
-		# IF SMALLEST IS DESIRED CREATE PATH
-			if smallest == finish
+			smallest_vert = @nodes.delete_min_return_key
+
+			if smallest_vert == finish
 				path = []
-				while @previous[smallest]
-					path << smallest
-					smallest = @previous[smallest]
+				while @previous[smallest_vert]
+					path << smallest_vert
+					smallest_vert = @previous[smallest_vert]
 				end
 				return path
 			end
-			# BASE BREAK
-			if smallest == nil || @distances[smallest] == maxint
+
+			if smallest_vert == nil || @distances[smallest_vert] == maxint
 				break
 			end
-			# SET DISTANCES
-			@vertices[smallest].each do |neighbor, value|
-				alt = @distances[smallest] + @vertices[smallest][neighbor]
-				if alt < @distances[neighbor]
-					@distances[neighbor] = alt
-					@previous[neighbor] = smallest
-					@nodes[neighbor] = alt
-				end
+
+		@vertices[smallest_vert].each do |neighbor, value|
+			alt = @distances[smallest_vert] + @vertices[smallest_vert][neighbor]
+			if alt < @distances[neighbor]
+				@distances[neighbor] = alt
+				@previous[neighbor] = smallest_vert
+				@nodes[neighbor] = alt
 			end
+		end
 		end
 	end
 
 	def distance
 		@distances
 	end
-
 end
 
 
@@ -74,5 +72,3 @@ dijkstra.add_vertex('H', {'E' => 1, 'F' => 3})
 
 p dijkstra.shortest_path("A", "E")
 p dijkstra.distance
-# {"A"=>0, "B"=>7, "C"=>8, "D"=>17, "E"=>13, "F"=>9, "G"=>12, "H"=>12}
-
