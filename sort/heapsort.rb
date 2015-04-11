@@ -36,7 +36,7 @@ def heap_sort(array)
     array[0], array[index] = array[index], array[0]
     max_heapify(array, 0, index)
   end
-    array
+   array
 end
 
 a = [4,3,5,6,1,9,6,4,2]
