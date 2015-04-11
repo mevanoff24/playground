@@ -13,13 +13,13 @@ in-place quick sort - DONE
 bucket/radix sort - DONE
 closest pair - DONE
 vector (dynamic array)
-linked list
+linked list 
 stack - LIFO - DONE
 queue - DONE
 circular queue
 hash map
 set
-priority queue
+priority queue - DONE
 binary search tree - DONE
 
 
