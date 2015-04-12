@@ -1,23 +1,35 @@
 
-def quick(array, left=0, right=array.length-1)
-	if left < right
-		pivot_index = quicksort(array, left, right)
-		quick(array, pivot_index+1, right)
-		quick(array, left, pivot_index-1)
+def merge_sort(array)
+	if array.length <= 1
+		return [0, array]
 	end
-	array
+		middle_index = array.length/2
+		left = merge_sort(array[0..middle_index-1])
+		right = merge_sort(array[middle_index..array.length])
+		merge(left[1], right[1])
 end
 
-def quicksort(array, left, right)
-	pivot = array[right]
-	index = left -1
-	for number in left..right-1
-		if array[number] <= pivot
-			index +=1
-			array[number], array[index] = array[index], array[number]
+def merge(left, right)
+	output = []
+	inversions = 0
+	left_index,right_index = 0,0
+	while left_index < left.length && right_index < right.length
+		if left[left_index] < right[right_index]
+			output << left[left_index]
+			left_index +=1
+		else
+			output << right[right_index]
+			right_index +=1
+			inversions += left.length - left_index
 		end
 	end
-	array[right], array[index+1] = array[index+1], array[right]
-	index +1
+
+	if left_index < left.length
+		output += left[left_index..left.length]
+	else
+		output += right[right_index..right.length]
+	end
+	return [inversions, output]
 end
-p quick([2,5,2,5,7,2,8,5,9,6,3,2,4,6,7])
+
+p merge_sort([2,4,1,9,5,3,7,2,9,2])
