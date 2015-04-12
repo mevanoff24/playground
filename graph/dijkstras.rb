@@ -42,7 +42,7 @@ class Dijkstra
 			if smallest == nil || @distances[smallest] == maxint
 				break
 			end
-			# SET DISTANCES
+			# RESET DISTANCES
 			@vertices[smallest].each do |neighbor, value|
 				alt = @distances[smallest] + @vertices[smallest][neighbor]
 				if alt < @distances[neighbor]
