@@ -1,14 +1,20 @@
 
 
 def insertion_sort(array)
-	(1..array.length - 1).each do |index|
-		value_to_insert = array.delete_at(index)
-		while index > 0 && value_to_insert < array[index - 1]
-			index -= 1 
+	for size in 2..array.length
+		element = array[size-1]
+		index = size-2
+		while index >= 0 && element < array[index]
+			array[index+1] = array[index]
+			index -= 1
 		end
-		array.insert(index, value_to_insert)
-	end
-	array
+		array[index+1] = element
+	end 
 end
 
-p insertion_sort([3,5,1,6,4])
+puts "Original Array :"
+original_array=[2,19,5,4,3,14,2]
+p original_array
+puts "Sorted Array Using Insertion Sort:"
+insertion_sort(original_array)
+p original_array
