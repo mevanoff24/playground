@@ -26,7 +26,7 @@ class BinarySearchTree
 	def insert(value)
 		puts "inserting: " + value.to_s
 		current_node = @root
-		while nil != current_node
+		while current_node != nil
 			if value < current_node.value && current_node.left == nil
 				current_node.left = TreeNode.new(value, nil, nil)
 			elsif value > current_node.value && current_node.right == nil

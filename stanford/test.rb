@@ -1,35 +1,52 @@
 
 
-def merge_sort(array)
-	if array.length <= 1
-		return array
+class TreeNode
+	attr_accessor :value, :left, :right
+
+	def initialize(value, left, right)
+		@value = value
+		@left = left
+		@right = right
 	end
-	middle_index = array.length/2
-	left = merge_sort(array[0..middle_index-1])
-	right = merge_sort(array[middle_index..array.length])
-	merge(left, right)
 end
 
-def merge(left, right)
-	output = []
-	left_index, right_index = 0,0
-	while left_index < left.length && right_index < right.length
-		if left[left_index] < right[right_index]
-			output << left[left_index]
-			left_index +=1
-		else
-			output << right[right_index]
-			right_index +=1
+class BinarySearchTree
+	def initialize(value)
+		@root = TreeNode.new(value, nil, nil)
+	end
+
+	def inorder_transversal(node=@root)
+		return if (node == nil)
+		inorder_transversal(node.left)
+		puts node.value.to_s
+		inorder_transversal(node.right)
+	end
+
+	def insert(value)
+		current_node = @root
+		while current_node != nil
+			if value < current_node.value && current_node.left == nil
+				current_node.left = TreeNode.new(value, nil, nil)
+			elsif value > current_node.value && current_node.right == nil
+				current_node.right = TreeNode.new(value, nil, nil)
+			elsif value < current_node.value
+				current_node = current_node.left
+			elsif value > current_node.value
+				current_node = current_node.right
+			else
+				return
+			end			
 		end
 	end
-
-	if left_index < left.length
-		output += left[left_index..left.length]
-	else
-		output += right[right_index..right.length]
-	end
-	return output
 end
 
-
-p merge_sort([3,5,2,1,7,8,5,2,4,2,1])
+bst = BinarySearchTree.new(10)
+bst.insert(11)
+bst.insert(9)
+bst.insert(5)
+bst.insert(7)
+bst.insert(18)
+bst.insert(17)
+# Demonstrating Different Kinds of Traversals
+puts "In-Order Traversal:"
+bst.inorder_transversal
