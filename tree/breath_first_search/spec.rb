@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require 'rspec'
 
 require_relative 'graph'
 require_relative 'node'
@@ -23,6 +24,6 @@ describe BreathFirstSearch do
 
     path = BreathFirstSearch.new(graph, @node1).shortest_path(@node5)
 
-    expect(path).to eq [@node1, @node5]
+    expect(path).to eq([@node1, @node5])
   end
 end

@@ -1,9 +1,3 @@
-put unvisted nodes on a queue
-
-put source node into FIFO queue and mark as explored
-repeat until queue is empty
-remove least recently added node
-add each unvisted adjacents to queue and mark as visited
 
 class BreathFirstSearch
 	def initialize(graph, source_node)
@@ -11,14 +5,13 @@ class BreathFirstSearch
 		@node = source_node
 		@explored = []
 		@edges_to = {}
-
 		bfs(source_node)
 	end
 
 	def shortest_path(node)
 		return unless @explored.include?(node)
 		path = []
-		while node != @node
+		while node != @node do 
 			path.unshift(node)
 			node = @edges_to[node]
 		end
@@ -29,10 +22,10 @@ class BreathFirstSearch
 		queue = []
 		queue << node
 		@explored << node
-
-		while queue.any? 
+		while queue.any?
 			current_node = queue.shift
 			current_node.adjacents.each do |adj_node|
+				next if @explored.include?(adj_node)
 				queue << adj_node
 				@explored << adj_node
 				@edges_to[adj_node] = current_node
