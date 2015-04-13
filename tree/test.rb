@@ -1,40 +1,42 @@
+put unvisted nodes on a queue
 
-class Node
-	attr_accessor :value, :left_child, :right_child
-	def initialize(value)
-		@value = value
-		@left_child = nil
-		@right_child = nil
+put source node into FIFO queue and mark as explored
+repeat until queue is empty
+remove least recently added node
+add each unvisted adjacents to queue and mark as visited
+
+class BreathFirstSearch
+	def initialize(graph, source_node)
+		@graph = graph
+		@node = source_node
+		@explored = []
+		@edges_to = {}
+
+		bfs(source_node)
 	end
 
-	def make_BST(size)
-		numbers = (0..size).to_a.shuffle
-		root = Node.new(numbers.shift)
-		while numbers.any?
-			add_node(root, Node.new(numbers.shift))
+	def shortest_path(node)
+		return unless @explored.include?(node)
+		path = []
+		while node != @node
+			path.unshift(node)
+			node = @edges_to[node]
 		end
-		return root
+		path.unshift(@node)
 	end
 
-	def add_node(root, node)
-		if node.value < root.value
-			if root.left_child == nil
-				root.left_child = node
-				return
-			else
-				add_node(root.left_child, node)
-			end
-		else
-			if root.right_child == nil
-				root.right_child = node
-				return
-			else
-				add_node(root.right_child, node)
+	def bfs(node)
+		queue = []
+		queue << node
+		@explored << node
+
+		while queue.any? 
+			current_node = queue.shift
+			current_node.adjacents.each do |adj_node|
+				queue << adj_node
+				@explored << adj_node
+				@edges_to[adj_node] = current_node
 			end
 		end
-		return root
 	end
 end
-
-p node = Node.new(0)
-p node.make_BST(20)
