@@ -1,61 +1,78 @@
-PS 
-initialize with path to and distance to 
-set all distance to as INFINITY except source node 
-
+require 'priority_queue'
 
 class Dijkstra
 
-	def initialize(graph, source_node)
-		@graph = graph
-		@source_node = source_node
-		@path_to = {}
-		@distance_to = {}
-		@queue = {}
-
-		compute_shortest_path
+	def initialize()
+		@vertices = {}
+		@distances = {}
+		@previous = {}
+		@nodes = PriorityQueue.new
 	end
 
-	def compute_shortest_path
-		@graph.nodes.each do |node|
-			@distance_to[node] = Float::INFINITY
+	def add_vertex(name, edges)
+		@vertices[name] = edges
+	end
+
+	def shortest_path(start, finish)
+		maxint = Float::INFINITY
+		# INITIALIZE VERTICES
+		@vertices.each do |vertex, value|
+			if start == vertex
+				@distances[vertex] = 0
+				@nodes[vertex] = 0
+			else
+				@distances[vertex] = maxint
+				@nodes[vertex] = maxint
+			end
+			@previous[vertex] = nil
 		end
-		@distance_to[@source_node] = 0
-		@queue[@source_node] = 0
-		@queue.sort_by {|k,v| v}
-		while @queue.any?
-			@queue.shift.first
-			node.adjacents.each do |adj_node|
-				confirm(adj_node)
+		# PLUCK OUT FIRST 
+		while @nodes.any?
+			smallest = @nodes.delete_min_return_key
+		# IF SMALLEST IS DESIRED CREATE PATH
+			if smallest == finish
+				path = []
+				while @previous[smallest]
+					path << smallest
+					smallest = @previous[smallest]
+				end
+				return path
+			end
+			# BASE BREAK
+			if smallest == nil || @distances[smallest] == maxint
+				break
+			end
+			# RESET DISTANCES
+			@vertices[smallest].each do |neighbor, value|
+				alt = @distances[smallest] + @vertices[smallest][neighbor]
+				if alt < @distances[neighbor]
+					@distances[neighbor] = alt
+					@previous[neighbor] = smallest
+					@nodes[neighbor] = alt
+				end
 			end
 		end
 	end
 
-	def confirm(node)
-		return if 
+	def distance
+		@distances
 	end
 
 end
 
-class PriorityQueue
-  def initialize
-    @queue = {}
-  end
 
-  def any?
-    @queue.any?
-  end
+dijkstra = Dijkstra.new
 
-  def insert(key, value)
-    @queue[key] = value
-    order_queue
-  end
+dijkstra.add_vertex('A', {'B' => 7, 'C' => 8})
+dijkstra.add_vertex('B', {'A' => 7, 'F' => 2})
+dijkstra.add_vertex('C', {'A' => 8, 'F' => 6, 'G' => 4})
+dijkstra.add_vertex('D', {'F' => 8})
+dijkstra.add_vertex('E', {'H' => 1})
+dijkstra.add_vertex('F', {'B' => 2, 'C' => 6, 'D' => 8, 'G' => 9, 'H' => 3})
+dijkstra.add_vertex('G', {'C' => 4, 'F' => 9})
+dijkstra.add_vertex('H', {'E' => 1, 'F' => 3})
 
-  def remove_min
-    @queue.shift.first
-  end
+p dijkstra.shortest_path("A", "E")
+p dijkstra.distance
+# {"A"=>0, "B"=>7, "C"=>8, "D"=>17, "E"=>13, "F"=>9, "G"=>12, "H"=>12}
 
-  private
-  def order_queue
-    @queue.sort_by {|_key, value| value }
-  end
-end

@@ -1,53 +1,72 @@
+require 'priority_queue'
 
-class TreeNode
-	attr_accessor :value, :left, :right
-	def initialize(value, left, right)
-		@value = value
-		@right = right
-		@left = right
-	end
-end
-
-class BinaryTree
-	def initialize(value)
-		@root = TreeNode.new(value, nil, nil)
+class Dijkstra
+	def initialize
+		@vertices = {}
+		@distances = {}
+		@previous = {}
+		@nodes = PriorityQueue.new
 	end
 
-	def inordertransversal(node = @root)
-		return if node == nil
-		inordertransversal(node.left)
-		puts node.value.to_s
-		inordertransversal(node.right)
+	def add_vertex(name, edges)
+		@vertices[name] = edges
 	end
 
-	def insert(node)
-		current_node = @root
-		while current_node != nil
-			if node < current_node.value && current_node.left == nil
-				current_node = TreeNode.new(node, nil, nil)
-			elsif node > current_node.value && current_node.right == nil
-				current_node = TreeNode.new(node, nil, nil)
-			elsif node < current_node.value
-				current_node = current_node.left
-			elsif node > current_node.value
-				current_node = current_node.right
+	def shortest_path(start, finish)
+		maxint = Float::INFINITY
+		@vertices.each do |vertex, value|
+			if start == vertex
+				@distances[vertex] = 0
+				@nodes[vertex] = 0
 			else
-				return
-			end	
+				@distances[vertex] = maxint
+				@nodes[vertex] = maxint
+			end
+			@previous[vertex] = nil
+		end
+		while @nodes.any?
+			smallest_value = @nodes.delete_min_return_key
+			if smallest_value == finish
+				path = []
+				while @previous[smallest_value]
+					path << smallest_value
+					smallest_value = @previous[smallest_value]
+				end
+				return path
+			end
+			if smallest_value == nil || @distances[smallest_value] = maxint
+				break
+			end
+			@vertices[smallest_value].each do |neighbor, value|
+				alt = @distances[smallest_value] + @vertices[smallest_value][neighbor]
+				if alt < @distances[neighbor]
+					@distances[neighbor] = alt
+					@previous[neighbor] = smallest_value
+					@nodes[neighbor] = alt
+				end
+			end
 		end
 	end
+
+	def distance
+		@distances
+	end
 end
 
-bst = BinaryTree.new(10)
-bst.insert(11)
-bst.insert(9)
-bst.insert(5)
-bst.insert(7)
-bst.insert(18)
-bst.insert(17)
-
-puts "In-Order Traversal:"
-p bst.inordertransversal
 
 
 
+
+dijkstra = Dijkstra.new
+
+dijkstra.add_vertex('A', {'B' => 7, 'C' => 8})
+dijkstra.add_vertex('B', {'A' => 7, 'F' => 2})
+dijkstra.add_vertex('C', {'A' => 8, 'F' => 6, 'G' => 4})
+dijkstra.add_vertex('D', {'F' => 8})
+dijkstra.add_vertex('E', {'H' => 1})
+dijkstra.add_vertex('F', {'B' => 2, 'C' => 6, 'D' => 8, 'G' => 9, 'H' => 3})
+dijkstra.add_vertex('G', {'C' => 4, 'F' => 9})
+dijkstra.add_vertex('H', {'E' => 1, 'F' => 3})
+
+p dijkstra.shortest_path("A", "E")
+p dijkstra.distance
