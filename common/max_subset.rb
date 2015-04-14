@@ -1,30 +1,20 @@
 
-def get_max_sum(array)
-	best_so_far = 0
-	best_now = 0
-	best_start_index_so_far = -1
-	best_stop_index_so_far = -1
-	best_start_index_now = -1
 
-	for number in array
-		value = best_now + array[number]
-		if value > 0
-			if best_now == 0
-				best_start_index_now = number
-			end
-			best_now = value
-		else
-			best_now = 0
-		end
-		if best_now > best_so_far
-			best_so_far = best_now
-			best_stop_index_so_far = number
-			best_start_index_so_far = best_start_index_now
-		end
-	end
-	p best_so_far
-	p best_start_index_so_far
-	p best_stop_index_so_far
+
+def DP_solve(array)
+    max, head, tail = 0, 0, 0
+    cur_head = 0
+    sum = [ [0, array[0]].max ] # base case
+    (1...array.length).each do |number|
+        sum[number] = [0, sum[number-1] + array[number]].max # bottom-up
+        cur_head = number if sum[number-1] == 0 and sum[number] > 0
+        if sum[number] > max
+            head = cur_head
+            tail = number
+            max = sum[number]
+        end
+    end
+    return max, head, tail
 end
 
-get_max_sum([1,,4,2,44,2,4,67,2,4,6,3,2])
+p DP_solve([5,8,-2,4,-5,2,6,-7,2])
