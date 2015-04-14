@@ -1,5 +1,6 @@
-class Node
-	attr_accessor :value, :left, :right
+
+class Node 
+	attr_accessor :value, :right, :left
 	def initialize(value)
 		@value = value
 		@left = nil
@@ -15,18 +16,17 @@ root.left.right = Node.new(6)
 root.left.right.left = Node.new(4)
 root.left.right.right = Node.new(7)
 
-def is_value_present(root, value)
+def is_value_present_in_tree(root, value)
 	return false if root == nil
 	if root.value == value
-		return true
+		true
 	elsif root.value < value
-		return is_value_present(root.right, value)
+		return is_value_present_in_tree(root.right, value)
 	else
-		return is_value_present(root.left, value)	
+		return is_value_present_in_tree(root.left, value)
 	end
 end
 
-p is_value_present(root, 8)
-p is_value_present(root, 7)
-p is_value_present(root, 4)
-p is_value_present(root, 11)
+p is_value_present_in_tree(root, 8) == true
+p is_value_present_in_tree(root, 7) == true
+p is_value_present_in_tree(root, 12) == false

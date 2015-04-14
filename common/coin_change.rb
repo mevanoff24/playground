@@ -1,43 +1,21 @@
 
 
-# def coin_change(amount, avail_coins = [100,50,25,10,5,1])
-# 	coins = []
-# 	index = 0
-# 	coin = avail_coins[index]
-# 	p coin
-# 	remaining_amount = amount
-# 	until remaining_amount == 0
-# 		until remaining_amount >= coin
-# 			index += 1
-# 			coin = avail_coins[index]
-# 		end
-# 		puts "Amount: #{remaining_amount} | Coin: #{coin}"
-# 		coins << coin
-# 		remaining_amount -= coin
-# 	end
-# 	coins
-# end
-
-
 def coin_change(amount, avail_coins=[100,50,25,10,5,1])
 	wallet = []
 	index = 0
-	coin = avail_coins[index]
+	each_coin = avail_coins[index]
 	remaining_amount = amount
 	until remaining_amount == 0
-		until remaining_amount >= coin
-			index +=1
-			coin = avail_coins[index]
+		until remaining_amount >= each_coin
+			index += 1
+			each_coin = avail_coins[index]
 		end
-		wallet << coin
-		remaining_amount -= coin
+		wallet << each_coin
+		remaining_amount -= each_coin
 	end
 	wallet
 end
-
 p coin_change(206)
-
-
 
 
 
