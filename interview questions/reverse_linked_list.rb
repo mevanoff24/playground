@@ -17,7 +17,7 @@ class LinkedList
 
 	def add(new_node)
 		if @head == nil
-			@head = current_node
+			@head = new_node
 		else
 			current_node = @head
 			until current_node.pointer == nil
@@ -38,6 +38,30 @@ class LinkedList
 		pp second_to_last_node
     pp last_node
 	end
+
+	def print_list
+		current_node = @head
+		index = 0
+		while current_node
+      print "Index #{index}, value: #{current_node.value} ==>"
+  		current_node = current_node.pointer
+  		index+=1
+    end
+  end
+
+  def print_reverse
+  	previous_node = nil
+  	current_node = @head
+
+  	until current_node == nil
+  		next_node = current_node.pointer
+  		current_node.pointer = previous_node
+  		previous_node = current_node
+  		current_node = next_node
+  	end
+  	@head = previous_node
+  end
+
 end
 
 first_node = Node.new(1)
@@ -55,5 +79,7 @@ our_list.add(second_node)
 our_list.add(third_node)
 our_list.add(fourth_node)
 our_list.add(fifth_node)
-our_list.remove
+p our_list.print_list
+puts
 
+p our_list.print_reverse
