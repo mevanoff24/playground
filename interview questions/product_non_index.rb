@@ -10,7 +10,9 @@
     i = 0
     while i < int_array.length
        products_of_all_ints_except_at_index[i] = product
+       p product
        product *= int_array[i]
+       p product
        i += 1
     end
     
