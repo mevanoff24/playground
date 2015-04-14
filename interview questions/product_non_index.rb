@@ -1,18 +1,16 @@
-  def get_products_of_all_ints_except_at_index(int_array)
+  def get_products_of_all_ints_except_at_index(array)
 
     # we make an array with the length of the input array to
     # hold our products
-    products_of_all_ints_except_at_index = [1] * int_array.length
+    products_of_all_ints_except_at_index = []
 
     # for each integer, we find the product of all the integers
     # before it, storing the total product so far each time
     product = 1
     i = 0
-    while i < int_array.length
+    while i < array.length
        products_of_all_ints_except_at_index[i] = product
-       p product
-       product *= int_array[i]
-       p product
+       product *= array[i]
        i += 1
     end
     
@@ -21,10 +19,10 @@
     # product of all the integers before it, now we're storing
     # the total product of all other integers
     product = 1
-    i = int_array.length - 1
+    i = array.length - 1
     while i >= 0
       products_of_all_ints_except_at_index[i] *= product
-      product *= int_array[i]
+      product *= array[i]
       i -= 1
      end
 
