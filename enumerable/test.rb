@@ -1,13 +1,12 @@
 
 class Array 
-	def my_select
-		array = []
+	def my_map
+		result = []
 		index = 0
 		while self[index]
-			array << true if (yield self[index])
-			index += 1
+			result << (yield self[index])
+			index +=1
 		end
-		array
 	end
 end
 
