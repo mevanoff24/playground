@@ -5,10 +5,10 @@ def get_max_profit(stock_prices)
 	max_profit_so_far = local_max - local_min
 
 	stock_prices[2..stock_prices.length].each do |price|
-		if price > local_max
+		if price > local_min
 			local_max = price
-			profit = local_max - local_min
-			max_profit_so_far = profit if profit > max_profit_so_far
+			price = local_max - local_min
+			max_profit_so_far = price if price > max_profit_so_far
 		end
 	end
 	max_profit_so_far
