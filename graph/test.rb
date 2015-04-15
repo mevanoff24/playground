@@ -9,13 +9,13 @@ class Dijkstra
 		@nodes = PriorityQueue.new
 	end
 
-	def add_vertex(name, values)
-		@vertices[name] = values
+	def add_vertex(name, edges)
+		@vertices[name] = edges
 	end
 
 	def shortest_path(start, finish)
 		maxint = Float::INFINITY
-		@vertices.each do |vertex, values|
+		@vertices.each do |vertex, value|
 			if start == vertex
 				@distances[vertex] = 0
 				@nodes[vertex] = 0
@@ -25,39 +25,36 @@ class Dijkstra
 			end
 			@previous[vertex] = nil
 		end
-
+		
 		while @nodes.any?
-			smallest_vert = @nodes.delete_min_return_key
-
-			if smallest_vert == finish
+			smallest = @nodes.delete_min_return_key
+			if finish == smallest
 				path = []
-				while @previous[smallest_vert]
-					path << smallest_vert
-					smallest_vert = @previous[smallest_vert]
+				while @previous[smallest]
+					path << smallest
+					smallest = @previous[smallest]
 				end
 				return path
 			end
 
-			if smallest_vert == nil || @distances[smallest_vert] == maxint
-				break
-			end
+			break if smallest == nil || @distances[smallest] == maxint
 
-		@vertices[smallest_vert].each do |neighbor, value|
-			alt = @distances[smallest_vert] + @vertices[smallest_vert][neighbor]
-			if alt < @distances[neighbor]
-				@distances[neighbor] = alt
-				@previous[neighbor] = smallest_vert
-				@nodes[neighbor] = alt
+			@vertices[smallest].each do |neighbor, value|
+				alt = @distances[smallest] + @vertices[smallest][neighbor]
+				if alt < @distances[neighbor]
+					@distances[neighbor] = alt
+					@previous[neighbor] = smallest
+					@nodes[neighbor] = alt
+				end
 			end
-		end
 		end
 	end
 
 	def distance
 		@distances
 	end
-end
 
+end
 
 dijkstra = Dijkstra.new
 
