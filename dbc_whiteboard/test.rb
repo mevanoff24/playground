@@ -30,7 +30,7 @@ class LinkedList
 		current_node = @head
 		next_index = 1
 		while next_index <= index
-			if index == next_index
+			if next_index == index
 				new_node.pointer = current_node.pointer
 				current_node.pointer = new_node
 			end
@@ -39,9 +39,30 @@ class LinkedList
 		end
 	end
 
-	def remove_at_index(node, index)
+	def remove(value)
+    if @head.value == value
+    	@head = @head.pointer
+    else
+    	current_node = @head.pointer
+    	previous_node = @head
+    	while current_node
+    		if current_node.value == value
+    			previous_node.pointer = current_node.pointer
+    			return true
+    		end
+    		previous_node = current_node
+    		current_node = current_node.pointer
+    	end
+    end
+  end
 
-	end
+  def find(value)
+  	current_node = @head
+  	while current_node != nil
+  		return current_node if current_node.value == value
+  		current_node = current_node.pointer
+  	end
+  end
 
 	def print_list
 		current_node = @head
@@ -70,7 +91,11 @@ our_list.add_node(second_node)
 our_list.add_node(third_node)
 our_list.add_node(fourth_node)
 our_list.add_node(fifth_node)
+p our_list.find(2).value
 our_list.print_list
 puts
 our_list.add_at_index(sixth_node, 2)
+our_list.print_list
+our_list.remove(5)
+puts
 our_list.print_list
