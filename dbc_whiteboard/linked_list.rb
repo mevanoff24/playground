@@ -60,7 +60,7 @@ class LinkedList
 
   def find(value)
   	current_node = @head
-  	while current_node != nil
+  	while current_node
   		return current_node if current_node.value == value
   		current_node = current_node.pointer
   	end
@@ -89,19 +89,21 @@ class LinkedList
 	end
 
 	def terminates?
-		slow_node = @head
-		fast_node = @head.pointer.pointer
-		if fast_node.nil? || slow_node.nil?
-			puts "LinkedList is acyclic."
-			return true
-		elsif fast_node == slow_node || fast_node.pointer == slow_node
-			puts "LinkedList is cyclic"
-			return false
-		else
-			slow_node = slow_node.pointer
-			fast_node = fast_node.pointer.pointer
-		end
-	end
+    slow_node = @head
+    fast_node = @head.pointer.pointer
+    while true
+      if fast_node.nil? || fast_node.pointer.nil?
+        puts "LinkedList is acyclic."
+        return true
+      elsif fast_node == slow_node || fast_node.pointer == slow_node
+        puts "LinkedList cycles."
+        return false
+      else
+        slow_node = slow_node.pointer
+        fast_node = fast_node.pointer.pointer
+      end
+    end
+  end
 
 end
 
@@ -121,6 +123,7 @@ our_list.add_node(second_node)
 our_list.add_node(third_node)
 our_list.add_node(fourth_node)
 our_list.add_node(fifth_node)
+puts "find"
 p our_list.find(2).value
 our_list.print_list
 puts
@@ -130,4 +133,5 @@ our_list.remove(5)
 puts
 our_list.print_list
 p our_list.print_reverse
-our_list.terminates?
+puts "terminates?"
+puts our_list.terminates?
