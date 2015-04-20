@@ -17,7 +17,7 @@ class LinkedList
 
 	def add_node(new_node)
 		if @head == nil
-			@head = new_node
+			@head_node = new_node
 		else
 			current_node = @head
 			until current_node.pointer == nil
@@ -31,7 +31,7 @@ class LinkedList
 		current_node = @head
 		next_index = 1
 		while next_index <= index
-			if next_index == index
+			if index == next_index
 				new_node.pointer = current_node.pointer
 				current_node.pointer = new_node
 			end
@@ -41,36 +41,36 @@ class LinkedList
 	end
 
 	def remove(value)
-    if @head.value == value
-    	@head = @head.pointer
-    else
-    	current_node = @head.pointer
-    	previous_node = @head
-    	while current_node
-    		if current_node.value == value
-    			previous_node.pointer = current_node.pointer
-    			return true
-    		end
-    		previous_node = current_node
-    		current_node = current_node.pointer
-    	end
-    	nil
-    end
-  end
+		if @head.value == value
+			@head = @head.pointer
+		else
+			current_node = @head.pointer
+			previous_node = @head
+			while current_node
+				if current_node.value == value
+					previous_node.pointer = current_node.pointer
+					return true
+				end
+				previous_node = current_node
+				current_node = current_node.pointer
+			end
+			nil
+		end
+	end
 
-  def find(value)
-  	current_node = @head
-  	while current_node != nil
-  		return current_node if current_node.value == value
-  		current_node = current_node.pointer
-  	end
-  end
+	def find(value)
+		current_node = @head
+		while current_node
+			return current_node if current_node.value == value
+			current_node = current_node.pointer
+		end
+	end
 
 	def print_list
 		current_node = @head
 		index = 0
 		while current_node
-			puts "#{index} -> #{current_node.value}"
+			puts "#{index} -> #{current_node.pointer}"
 			current_node = current_node.pointer
 			index += 1
 		end
@@ -90,18 +90,20 @@ class LinkedList
 
 	def terminates?
 		slow_node = @head
-		fast_node = @head.pointer.pointer
-		if fast_node.nil? || slow_node.nil?
-			puts "LinkedList is acyclic."
-			return true
-		elsif fast_node == slow_node || fast_node.pointer == slow_node
-			puts "LinkedList is cyclic"
-			return false
-		else
-			slow_node = slow_node.pointer
-			fast_node = fast_node.pointer.pointer
-		end
-	end
+    fast_node = @head.pointer.pointer
+    while true
+      if fast_node.nil? || fast_node.pointer.nil?
+        puts "LinkedList is acyclic."
+        return true
+      elsif fast_node == slow_node || fast_node.pointer == slow_node
+        puts "LinkedList cycles."
+        return false
+      else
+        slow_node = slow_node.pointer
+        fast_node = fast_node.pointer.pointer
+      end
+    end
+ 	end
 
 end
 
