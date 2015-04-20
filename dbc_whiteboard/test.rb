@@ -8,6 +8,7 @@ class Node
 end
 
 class LinkedList
+
 	attr_accessor :head, :size
 	def initialize(head_node=nil)
 		@head = head_node
@@ -53,6 +54,7 @@ class LinkedList
     		previous_node = current_node
     		current_node = current_node.pointer
     	end
+    	nil
     end
   end
 
@@ -73,6 +75,34 @@ class LinkedList
 			index += 1
 		end
 	end
+
+	def print_reverse
+		previous_node = nil
+		current_node = @head
+		until current_node == nil
+			next_node = current_node.pointer
+			current_node.pointer = previous_node
+			previous_node = current_node
+			current_node = next_node
+		end
+		@head = previous_node
+	end
+
+	def terminates?
+		slow_node = @head
+		fast_node = @head.pointer.pointer
+		if fast_node.nil? || slow_node.nil?
+			puts "LinkedList is acyclic."
+			return true
+		elsif fast_node == slow_node || fast_node.pointer == slow_node
+			puts "LinkedList is cyclic"
+			return false
+		else
+			slow_node = slow_node.pointer
+			fast_node = fast_node.pointer.pointer
+		end
+	end
+
 end
 
 first_node = Node.new(1)
@@ -99,3 +129,5 @@ our_list.print_list
 our_list.remove(5)
 puts
 our_list.print_list
+p our_list.print_reverse
+our_list.terminates?
