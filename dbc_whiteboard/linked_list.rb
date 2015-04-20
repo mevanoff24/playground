@@ -130,8 +130,9 @@ puts
 our_list.add_at_index(sixth_node, 2)
 our_list.print_list
 our_list.remove(5)
-puts
+puts "print after remove"
 our_list.print_list
+puts "reverse print"
 p our_list.print_reverse
 puts "terminates?"
 puts our_list.terminates?
