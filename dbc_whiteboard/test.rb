@@ -1,6 +1,6 @@
 
 class Node
-	attr_accessor :pointer, :value
+	attr_accessor :value, :pointer
 	def initialize(value=nil, pointer=nil)
 		@value = value
 		@pointer = nil
@@ -13,7 +13,7 @@ class LinkedList
 		@head = head_node
 	end
 
-	def add_node(new_node)
+	def add(new_node)
 		if @head == nil
 			@head = new_node
 		else
@@ -25,16 +25,26 @@ class LinkedList
 		end
 	end
 
+	def print
+		current_node = @head
+		index = 0
+		while current_node
+			puts "index #{index} -> value #{current_node.value}"
+			current_node = current_node.pointer
+			index += 1
+		end
+	end
+
 	def add_at_index(new_node, index)
 		current_node = @head
 		next_index = 1
 		while next_index <= index
-			if next_index == index
+			if index == next_index
 				new_node.pointer = current_node.pointer
 				current_node.pointer = new_node
 			end
-			next_index += 1
 			current_node = current_node.pointer
+			next_index += 1
 		end
 	end
 
@@ -52,25 +62,6 @@ class LinkedList
 				previous_node = current_node
 				current_node = current_node.pointer
 			end
-			nil
-		end
-	end
-
-	def find(value)
-		current_node = @head
-		while current_node
-			return current_node.value if current_node.value == value
-			current_node = current_node.pointer
-		end
-	end
-
-	def print
-		current_node = @head
-		index = 0
-		while current_node
-			puts "#{index} -> #{current_node.value}"
-			current_node = current_node.pointer
-			index += 1
 		end
 	end
 
@@ -87,15 +78,15 @@ class LinkedList
 	end
 
 	def terminates?
-		slow_node = @head
 		fast_node = @head.pointer.pointer
+		slow_node = @head
 		while true
 			if fast_node.nil? || fast_node.pointer.nil?
 				puts "it ends"
 				return true
-			elsif slow_node == fast_node || fast_node.pointer == slow_node
+			elsif fast_node == slow_node || fast_node.pointer == slow_node
 				puts "never ends"
-				return true
+				return false
 			else
 				slow_node = slow_node.pointer
 				fast_node = fast_node.pointer
@@ -106,23 +97,27 @@ class LinkedList
 end
 
 first_node = Node.new(1)
-
-our_list = LinkedList.new(first_node)
-
 second_node = Node.new(2)
 third_node = Node.new(3)
-fourth_node = Node.new(4)
-fifth_node = Node.new(5)
+fourth_noode = Node.new(4)
+fifith_node = Node.new(5)
 sixth_node = Node.new(6)
-our_list.add_node(second_node)
-our_list.add_node(third_node)
-our_list.add_node(fourth_node)
-our_list.add_node(fifth_node)
+
+our_list = LinkedList.new(first_node)
+our_list.add(second_node)
+our_list.add(third_node)
+our_list.add(fourth_noode)
+our_list.add(fifith_node)
 our_list.print
-our_list.add_at_index(sixth_node, 2)
-our_list.remove(3)
+our_list.add_at_index(sixth_node, 3)
 puts
 our_list.print
-our_list.terminates?
-p our_list.find(5)
+our_list.remove(6)
+puts
+our_list.print
+p our_list.terminates?
 p our_list.print_reverse
+
+
+
+
