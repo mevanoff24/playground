@@ -1,6 +1,6 @@
 
 class Node
-	attr_accessor :value, :pointer
+	attr_accessor :pointer, :value
 	def initialize(value=nil, pointer=nil)
 		@value = value
 		@pointer = nil
@@ -8,16 +8,14 @@ class Node
 end
 
 class LinkedList
-
-	attr_accessor :head, :size
+	attr_accessor :head
 	def initialize(head_node=nil)
 		@head = head_node
-		@size = 0
 	end
 
 	def add_node(new_node)
 		if @head == nil
-			@head_node = new_node
+			@head = new_node
 		else
 			current_node = @head
 			until current_node.pointer == nil
@@ -31,12 +29,12 @@ class LinkedList
 		current_node = @head
 		next_index = 1
 		while next_index <= index
-			if index == next_index
+			if next_index == index
 				new_node.pointer = current_node.pointer
 				current_node.pointer = new_node
 			end
-			current_node = current_node.pointer
 			next_index += 1
+			current_node = current_node.pointer
 		end
 	end
 
@@ -61,24 +59,24 @@ class LinkedList
 	def find(value)
 		current_node = @head
 		while current_node
-			return current_node if current_node.value == value
+			return current_node.value if current_node.value == value
 			current_node = current_node.pointer
 		end
 	end
 
-	def print_list
+	def print
 		current_node = @head
 		index = 0
 		while current_node
-			puts "#{index} -> #{current_node.pointer}"
+			puts "#{index} -> #{current_node.value}"
 			current_node = current_node.pointer
 			index += 1
 		end
 	end
 
 	def print_reverse
-		previous_node = nil
 		current_node = @head
+		previous_node = nil
 		until current_node == nil
 			next_node = current_node.pointer
 			current_node.pointer = previous_node
@@ -90,29 +88,26 @@ class LinkedList
 
 	def terminates?
 		slow_node = @head
-    fast_node = @head.pointer.pointer
-    while true
-      if fast_node.nil? || fast_node.pointer.nil?
-        puts "LinkedList is acyclic."
-        return true
-      elsif fast_node == slow_node || fast_node.pointer == slow_node
-        puts "LinkedList cycles."
-        return false
-      else
-        slow_node = slow_node.pointer
-        fast_node = fast_node.pointer.pointer
-      end
-    end
- 	end
-
+		fast_node = @head.pointer.pointer
+		while true
+			if fast_node.nil? || fast_node.pointer.nil?
+				puts "it ends"
+				return true
+			elsif slow_node == fast_node || fast_node.pointer == slow_node
+				puts "never ends"
+				return true
+			else
+				slow_node = slow_node.pointer
+				fast_node = fast_node.pointer
+			end
+			nil
+		end
+	end
 end
 
 first_node = Node.new(1)
-p first_node.value == 1
-p first_node.pointer == nil
 
 our_list = LinkedList.new(first_node)
-p our_list.head.value == 1
 
 second_node = Node.new(2)
 third_node = Node.new(3)
@@ -123,13 +118,11 @@ our_list.add_node(second_node)
 our_list.add_node(third_node)
 our_list.add_node(fourth_node)
 our_list.add_node(fifth_node)
-p our_list.find(2).value
-our_list.print_list
-puts
+our_list.print
 our_list.add_at_index(sixth_node, 2)
-our_list.print_list
-our_list.remove(5)
+our_list.remove(3)
 puts
-our_list.print_list
-p our_list.print_reverse
+our_list.print
 our_list.terminates?
+p our_list.find(5)
+p our_list.print_reverse
