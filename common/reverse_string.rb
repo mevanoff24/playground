@@ -8,3 +8,12 @@ def reverse_string(string)
 end
 
 p reverse_string("Hello World")
+
+def reverse_mult_string(string)
+	string = string.split(' ')
+	(string.length/2).times do |i|
+		string[i], string[-1-i] = string[-1-i], string[i]
+	end
+	string
+end
+ p reverse_mult_string("Hello World")
