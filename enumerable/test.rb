@@ -7,8 +7,7 @@ class Array
 			result << (yield self[index])
 			index +=1
 		end
-	result
+		result
 	end
 end
-
 p [1,2,3].my_map{|n| n * 2 }
