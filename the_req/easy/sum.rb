@@ -10,7 +10,7 @@
 
 def sum_numbers(numbers)
 	sum = 0
-	numbers.each do |number|
+	for number in numbers
 		sum += number
 	end
 	sum

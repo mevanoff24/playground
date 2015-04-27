@@ -1,15 +1,9 @@
 
-def word_cloud(string)
-	puncuation = %w(. , " ( ) ! ? - )
-	puncuation.each do |punc|
-		string = string.downcase.gsub(punc, "")
+def reverse_string(string)
+	(string.length/2).times do |i|
+		string[i], string[-1-i] = string[-1-i], string[i]
 	end
-	occurances = Hash.new(0)
-	string = string.split(' ')
-	string.each do |word|
-		occurances[word] += 1
-	end
-	occurances
+	string
 end
 
-p word_cloud('After beating the eggs, Dana read the next step Add milk and eggs, then add flour and sugar.')
+p reverse_string("hello world")
