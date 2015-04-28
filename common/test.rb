@@ -1,9 +1,14 @@
 
-def reverse_string(string)
-	(string.length/2).times do |i|
-		string[i], string[-1-i] = string[-1-i], string[i]
+def word_cloud(pharagraph)
+	puncuation = %w(. , " ( ) ! ? - )
+	puncuation.each do |punc|
+		pharagraph = pharagraph.gsub(punc, "")
 	end
-	string
+	occurances = Hash.new(0)
+	pharagraph.downcase.split(" ").each do |word|
+		occurances[word] += 1
+	end
+	occurances
 end
 
-p reverse_string("hello world")
+p word_cloud("Hello, hello. My name is Amelia.")

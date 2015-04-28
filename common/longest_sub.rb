@@ -1,5 +1,3 @@
-
-
 def longest_incr_sub(array)
 	length_hash = {}
 	array.length.times do |number|

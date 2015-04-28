@@ -13,5 +13,4 @@ def word_cloud(pharagraph)
 end
 
 
-
 p word_cloud("Hello, hello. My name is Amelia.")
