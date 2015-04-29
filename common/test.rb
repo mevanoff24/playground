@@ -1,14 +1,10 @@
 
-def word_cloud(pharagraph)
-	puncuation = %w(. , " ( ) ! ? - )
-	puncuation.each do |punc|
-		pharagraph = pharagraph.gsub(punc, "")
-	end
+def mode(array)
 	occurances = Hash.new(0)
-	pharagraph.downcase.split(" ").each do |word|
-		occurances[word] += 1
+	array.each do |number|
+		occurances[number] +=1
 	end
-	occurances
+	return key if occurances.values.max
 end
 
-p word_cloud("Hello, hello. My name is Amelia.")
+p mode([1,3,5,7,3,2])
